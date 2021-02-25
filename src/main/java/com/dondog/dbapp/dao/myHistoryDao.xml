@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dondog.dbapp.dao.myHistoryDao">
+
+	<select id="gethosInfo" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.HospitalDto">
+	 	SELECT * FROM HP WHERE M_ID=#{id}
+	 </select>
+
+	<select id="getCareInfo" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.CareReservationDto">
+	 	SELECT * FROM CR WHERE M_ID=#{id} 	
+	 </select>
+	 
+	 
+	 <select id="getsitterInfo" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.ResPetsitterDto">
+	 	SELECT * FROM RPS WHERE M_ID=#{id}
+	 </select>
+
+	<select id="gethosInfo1" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.HospitalDto">
+	 	SELECT * FROM HP WHERE M_ID=#{id}
+	 </select>
+	
+	<select id="getbtInfo" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.CareReservationDto">
+	 	SELECT * FROM CR WHERE M_ID=#{id} 
+	 </select>
+	 
+	 <select id="getscInfo" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.CareReservationDto">
+	 	SELECT * FROM CR WHERE M_ID=#{id} 	
+	 </select>
+	 
+	 <select id="gethtLInfo" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.CareReservationDto">
+	 	SELECT * FROM CR WHERE M_ID=#{id} 	
+	 </select>
+	
+	<select id="getsitterInfo1" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.ResPetsitterDto">
+	 	SELECT * FROM RPS WHERE M_ID=#{id}
+	 </select>
+	 
+	 <select id="getCmList" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.CommuntyDto">
+	 	SELECT * FROM COMM WHERE M_ID=#{id}
+	 </select>
+	 
+	 <select id="getOriName" parameterType="String"
+	 	resultType="String">
+	 	SELECT F_ORINAME FROM FL WHERE F_SYSNAME=#{sysName}
+	 </select>
+	 
+	 <select id="mgMemberList" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.MemberDto">
+	 	 <![CDATA[SELECT * FROM M WHERE M_LEVEL=4 OR M_LEVEL=2 OR M_LEVEL=3]]>
+	 </select>
+	 
+	  <select id="mgBlackList" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.BlackListDto">
+	 	SELECT * FROM BL WHERE M_ID=#{id}	
+	 </select>
+	 
+	 <select id="myLikeList" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.LikeListDto">
+	 	SELECT * FROM LL WHERE M_ID=#{id}	
+	 </select>
+	 <select id="myLiCon" parameterType="String"
+	 	resultType="com.dondog.dbapp.dto.HostBoardDto">
+	 	SELECT * FROM HB WHERE BH_NUM=#{bh_num}	
+	 </select>
+	 
+	 <select id="hpContents" parameterType="String"
+		resultType="com.dondog.dbapp.dto.HospitalDto">
+		SELECT * FROM HP WHERE HP_NUM=#{hp_num}
+	</select>
+	 
+	 <!-- 해당 게시글에 업로드한 파일 목록 가져오기 -->
+	<select id="getfList" parameterType="String" resultType="com.dondog.dbapp.dto.FileDto">
+		SELECT * FROM FL WHERE P_PID=#{p_pid}
+	</select>
+	 
+	  <select id="getBfList" parameterType="Integer"
+	 	resultType="com.dondog.dbapp.dto.FileDto">
+	 	SELECT * FROM FL WHERE B_NUM=#{b_num}
+	 </select>
+	 
+</mapper>

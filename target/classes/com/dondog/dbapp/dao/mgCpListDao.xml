@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dondog.dbapp.dao.mgCpListDao">
+
+	
+	<select id="mgCApproList" resultType="com.dondog.dbapp.dto.HostBoardDto">
+		SELECT * FROM HB WHERE BH_STAT=0
+	</select>
+	
+	<select id="mgCpLook" resultType="com.dondog.dbapp.dto.HostBoardDto">
+		SELECT * FROM HB WHERE BH_NUM=#{bh_num}
+	</select>
+	
+	<select id="mgCAppro" resultType="com.dondog.dbapp.dto.HostBoardDto">
+		UPDATE HB SET BH_STAT=1 WHERE BH_NUM=#{bh_num}
+	</select>
+	
+	<select id="mgCAppro1" resultType="com.dondog.dbapp.dto.HostBoardDto">
+		UPDATE HB SET BH_STAT=2 WHERE BH_NUM=#{bh_num}
+	</select>
+	
+	<select id="mgCpList" resultType="com.dondog.dbapp.dto.HostMemberDto">
+		SELECT * FROM HM WHERE H_LEVEL=0
+	</select>
+	
+	<select id="mgCpLook2" resultType="com.dondog.dbapp.dto.HostMemberDto">
+		SELECT * FROM HM WHERE H_ID=#{h_id}
+	</select>
+	
+	<!-- 업체 강제탈퇴 쿼리 -->	
+	<update id="mgCpDel" parameterType="String">
+		UPDATE HM SET H_LEVEL=9, H_GRADE='강제탈퇴' WHERE H_ID=#{h_id}
+	</update>
+	
+	<update id="mgHbDel" parameterType="String">
+		UPDATE HB SET BH_STAT=9 WHERE BH_NUM=#{bh_num}
+	</update>
+	
+	<select id="mgPApproList" resultType="com.dondog.dbapp.dto.PetsitterFormDto">
+		SELECT * FROM PF WHERE UP_STAT=0
+	</select>
+	
+	<select id="mgPApproList2" resultType="com.dondog.dbapp.dto.PetsitterFormDto">
+		SELECT * FROM PF WHERE UP_NUM=#{up_num}
+	</select>
+	
+	<update id="sittera" parameterType="String">
+		UPDATE PF SET UP_STAT=1 WHERE UP_NUM=#{up_num}
+	</update>
+	
+	<update id="sitterd" parameterType="String">
+		UPDATE PF SET UP_STAT=2 WHERE UP_NUM=#{up_num}
+	</update>
+	
+	<select id="sitterupList" resultType="com.dondog.dbapp.dto.MemberDto">
+	<![CDATA[SELECT * FROM MEMBER WHERE M_LEVEL=2 OR M_LEVEL=3]]>
+	</select>
+	
+	<select id="sitterupList2" resultType="com.dondog.dbapp.dto.MemberDto">
+	SELECT * FROM MEMBER WHERE M_ID=#{m_id}
+	</select>
+	
+	<update id="Bsitterup" parameterType="String">
+		UPDATE MEMBER SET M_LEVEL=3, M_GRADE='비전문 펫시터' WHERE M_ID=#{m_id}
+	</update>
+	
+	<update id="Asitterup" parameterType="String">
+		UPDATE MEMBER SET M_LEVEL=4, M_GRADE='전문 펫시터' WHERE M_ID=#{m_id}
+	</update>
+	
+</mapper>
